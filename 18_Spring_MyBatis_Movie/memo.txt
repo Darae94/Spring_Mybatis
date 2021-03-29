@@ -1,0 +1,54 @@
+drop table movie;
+create table movie(
+	num number not null  primary key,
+	title varchar2(20) not null,
+	continent varchar2(20) not null,
+	nation varchar2(25) not null,
+	genre varchar2(60),
+	grade varchar2(5),
+	actor varchar2(50)
+);
+
+drop sequence mv_seq;
+create sequence mv_seq
+	increment by 1
+	start with 1 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+insert into movie(num,title,continent,nation,genre,grade,actor)
+values(mv_seq.nextval,'기생충','아시아','한국','액션,스릴러','19','송강호,이선균,이정은');
+
+commit;
+col num for 99
+col title for a10
+col continent for a6
+col nation for a8
+col genre for a20
+col grade for a3
+col actor for a25
+
+select * from movie;
+
+
+
+
+1:O
+2:O
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

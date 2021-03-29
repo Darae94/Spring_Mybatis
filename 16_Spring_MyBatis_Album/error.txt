@@ -1,0 +1,5 @@
+** The value for annotation attribute RequestMapping.value must be a constant expression
+상수 식으로 써라 = > 변수 처럼 변할수있으면 안됨
+
+** org.springframework.beans.NotReadablePropertyException
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="MyAlbum" type="album.model.AlbumBean"/>
+	</typeAliases>
+</configuration>
+
+<!-- 
+SqlMapConfig.xml config 화일
+별칭 설정해서 사용 가능!
+ -->

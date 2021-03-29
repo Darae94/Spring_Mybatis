@@ -1,0 +1,39 @@
+drop table albums;
+create table albums(
+	num number primary key,
+	title varchar2(20),
+	singer varchar2(20),
+	price number,
+	day date default sysdate
+);
+
+drop sequence albums_seq;
+create sequence albums_seq
+nocache;
+
+insert into albums values(albums_seq.nextval, 'fake love','bts', 2000, default);
+insert into albums values(albums_seq.nextval, '다이너마이트', 'bts', 3000, default);
+commit;
+select * from albums;
+
+
+-------------------------------------------
+web.xml 에 한글 설정 -> 날짜/시간 확인(프로젝트 실행)
+pom.xml 에 dependency(유효성검사, DB 사용) 설정
+web.xml 의 context-param -> root-context 에 객체 생성 - dataSource / sqlSessionFactoryBean / sqlSessionTemplate
+src/main/java에 album.model(bean,dao), album.controller, album.mybatis(xml 2가지 생성 : SqlMapConfig.xml , album.xml 안에 내용 작성) 생성
+web.xml 에 servlet 복사한 후 *.ab 요청 album 패키지 스캔 후 실행 가능하게 수정
+album-servlet.xml(context, mvc)->album 폴더에 jsp 위치하도록 설정 / album 패키지 쭉 보고 controller 실행하기 위해
+
+http://www.mybatis.org/mybatis-3/ko/getting-started.html
+dtd => xsd 같은 기능
+** SqlMapConfig.xml 아래 내용 추가
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+** album.xml 아래 내용 추가
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+

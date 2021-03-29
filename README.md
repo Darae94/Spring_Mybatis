@@ -116,7 +116,7 @@
 	</bean>
 ```
 
-3-1(multi). 클래스 별칭과 맵퍼(해당 실행 시 jsp 폴더 위치와 읽어들일 xml 작성)들을 해당 위치에 생성
+3-1.(multi) 클래스 별칭과 맵퍼(해당 실행 시 jsp 폴더 위치와 읽어들일 xml 작성)들을 해당 위치에 생성
 -------------
 
   => src/main/java에 *.model(bean,dao), *.controller, *.mybatis(xml 2가지 생성 : SqlMapConfig.xml , *.xml 안에 내용 작성) 생성

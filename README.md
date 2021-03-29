@@ -4,7 +4,6 @@
 ================================
 
 1. web.xml 한글 설정 -> 날짜/시간 확인(프로젝트 실행)
--------------
 
 ```xml
 	<!-- 한글설정 -->
@@ -30,7 +29,6 @@
 ```
 
 2. pom.xml 유효성, DB, 화일 등의 dependency 추가
--------------
 
 ```xml
   <repositories>
@@ -92,7 +90,6 @@
 ```
 
 3. web.xml 을 통해 root-context.xml 에 객체 생성 -> 여러 mapper 사용을 위해 mapperLocations 설정 안함 => SqlMapConfig.xml 에 class 별칭 처리 및  mapper 호출
--------------
 
   - web.xml 의 context-param -> root-context 에 객체 생성 - dataSource / sqlSessionFactoryBean / sqlSessionTemplate
 ```xml
@@ -145,7 +142,6 @@
 ```
 
 4. web.xml 기본 servlet 복사하여 각 *.?에 따른 해당 패키지 스캔 후 실행 가능하게 수정
--------------
 
 ```xml
 <!-- * 추가 -->
@@ -166,7 +162,6 @@
 ```
 
 5. src/main/webapp/WEB-INF/spring/appServlet에 *-servlet.xml(context, mvc) -> 받은 값의 jsp가 해당 폴더에 위치하도록 설정 / 패키지 쭉 보고 controller 실행
--------------
 
 ```xml
 	<mvc:annotation-driven/>

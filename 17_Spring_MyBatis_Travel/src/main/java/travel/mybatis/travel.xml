@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="travel.TravelBean">
+	
+	<select id="GetTravelList" resultType="MyTravel">
+		select * from travel
+		<if test="whatColumn == 'area'">
+			where area like #{keyword}
+		</if>
+		<if test="whatColumn == 'style'">
+			where style like #{keyword}	
+		</if>
+		order by num desc
+	</select>
+	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from travel
+		<if test="whatColumn == 'area'">
+			where area like #{keyword}
+		</if>
+		<if test="whatColumn == 'style'">
+			where style like #{keyword}	
+		</if>
+	</select>
+	
+	<insert id="InsertTravel">
+		insert into travel(num,name,age,area,style,price)
+		values(travel_seq.nextval,#{name},#{age},#{area},#{style},#{price})
+	</insert>
+	
+	<select id="GetTravel" resultType="MyTravel">
+		select * from travel
+		where num=#{num}
+	</select>
+	
+	<delete id="DeleteTravel">
+		delete from travel
+		where num=#{num}
+	</delete>
+	
+	<update id="UpdateTravel">
+		update travel set
+		name=#{name},age=#{age},area=#{area},style=#{style},price=#{price}
+		where num=#{num}
+	</update>
+	
+</mapper>
+
+<!-- 
+travel.xml
+
+동적 qeury : sql문 안에 if태그로 구분되어 완성되는 것
+
+parameterType : 어디서든 써도 되고 안써도 된다
+resultType : select에서는 반드시 써야 되고 insert, update, delete 절대로 쓰면 안된다.
+ -->

@@ -5,4 +5,9 @@
   
 <mapper namespace="orderdetail.model.OrderDetail">
 
+	<insert id="InsertData">
+		insert into orderdetails
+		values(seqodid.nextval, #{oid}, #{pnum}, #{qty})
+	</insert>
+
 </mapper>

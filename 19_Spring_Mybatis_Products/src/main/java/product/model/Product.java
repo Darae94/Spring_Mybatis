@@ -32,10 +32,29 @@ public class Product {
 	private String inputdate ;
 	
 	private MultipartFile upload;
+	private String upload2;
+	private int orderqty;
+	
+	public int getOrderqty() {
+		return orderqty;
+	}
+	
+	public void setOrderqty(int orderqty) {
+		this.orderqty = orderqty;
+	}
+	
+	public String getUpload2() {
+		return upload2;
+	}
+	
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
 	
 	public Product() {
 		super();
 	}
+	
 	public Product(int num, String name, String company, String image, int stock, int price, String category,
 			String contents, int point, String inputdate) {
 		super();

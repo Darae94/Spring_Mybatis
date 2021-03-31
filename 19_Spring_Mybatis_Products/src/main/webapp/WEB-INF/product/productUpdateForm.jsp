@@ -18,7 +18,7 @@ productUpdateForm.jsp<br>
 		<input type="hidden" name="num" value="${ product.num }">
 		<table border=1>
 			<tr>
-				<td>* 상품명</td>
+				<td>상품명</td>
 				<td>
 					<input type="text" name="name" value="${ product.name }">
 					<form:errors cssClass="err" path="name" />
@@ -29,7 +29,7 @@ productUpdateForm.jsp<br>
 				<td><input type="text" name="company" value="${ product.company }"></td>
 			</tr>
 			<tr>
-				<td>* 가격</td>
+				<td>가격</td>
 				<td>
 					<input type="text" name="price" value="${ product.price }">
 					<form:errors cssClass="err" path="price" />
@@ -44,17 +44,20 @@ productUpdateForm.jsp<br>
 				<td><input type="text" name="point" value="${ product.point }"></td>
 			</tr>
 			<tr>
-				<td>* 설명</td>
+				<td>설명</td>
 				<td>
 					<input type="text" name="contents" value="${ product.contents }">
 					<form:errors cssClass="err" path="contents" />
 				</td>
 			</tr>
 			<tr>
-				<td>* 그림 파일</td>
+				<td>그림 파일</td>
 				<td>
-					<img src="<%=request.getContextPath()%>/resources/${ product.image }" width=150 height=150 alt="${ product.name } 이미지"><br>
+					<c:if test="${ product.image != '' }">
+					<img src="<%=request.getContextPath()%>/resources/${ product.image }" width=100 height=100 alt="${ product.name } 이미지"><br>
+					</c:if>
 					<input type="file" name="upload">
+					<input type="hidden" name="upload2" value="${ product.image }">
 				</td>
 			</tr>
 			<tr>

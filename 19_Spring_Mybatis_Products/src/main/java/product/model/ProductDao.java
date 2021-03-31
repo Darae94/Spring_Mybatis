@@ -49,5 +49,12 @@ public class ProductDao {
 		int cnt = sqlSessionTemplate.update(namespace+"UpdateProduct",product);
 		return cnt;
 	}
+
+	public void stockDecrease(Integer pnum, Integer oqty) {
+		Product product = new Product();
+		product.setNum(pnum);
+		product.setStock(oqty);
+		sqlSessionTemplate.update(namespace+"StockDecrease", product);
+	}
 	
 }

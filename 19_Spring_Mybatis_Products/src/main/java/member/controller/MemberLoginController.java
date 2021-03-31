@@ -56,6 +56,8 @@ public class MemberLoginController {
 				String destination = (String) session.getAttribute("destination");
 				System.out.println("로그인 성공: "+destination);
 				// destination = "redirect:/insert.prd"
+				// destination = "redirect:/update.prd?num="+num
+				// destination = "redirect:/detail.prd?num="+num
 				return destination;
 			} else {
 				// password 불일치

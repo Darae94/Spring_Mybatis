@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/common.jsp" %>
 
+<%
+	session.setAttribute("destination", "redirect:/list.prd");
+%>
+
 <script type="text/javascript">
 	function insert() {
 		location.href = "insert.prd";
@@ -17,7 +21,7 @@ productList.jsp<br>
 <br>
 <a href="main.jsp">시작 페이지</a>
 <c:if test="${ loginInfo != null }">
-	<a href="">로그아웃</a>
+	<a href="logout.jsp">로그아웃</a>
 </c:if>
 <c:if test="${ loginInfo == null }">
 	<a href="loginForm.me">로그인</a>

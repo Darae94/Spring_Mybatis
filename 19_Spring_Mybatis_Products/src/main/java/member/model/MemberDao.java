@@ -53,4 +53,11 @@ public class MemberDao {
 		return cnt;
 	}
 	
+	public void updateMpoint(String id, int mpoint) {
+		Member member = new Member();
+		member.setId(id);
+		member.setMpoint(mpoint);
+		sqlSessionTemplate.update(namespace+"UpdateMpoint", member);
+	}
+	
 }

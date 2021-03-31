@@ -7,14 +7,18 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-	<!-- <mvc:annotation-driven/>
+	<mvc:annotation-driven/>
+
+	<context:component-scan base-package="mall" />
+	<context:component-scan base-package="product" />
+	<context:component-scan base-package="member" />
+	<context:component-scan base-package="order" />
+	<context:component-scan base-package="orderdetail" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/mall/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	<context:component-scan base-package="mall" /> -->
 
 </beans>
 <!-- *.mall => mall-servlet.xml -->

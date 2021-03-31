@@ -47,4 +47,10 @@
 		where num=#{num}
 	</update>
 	
+	<update id="StockDecrease">
+		update products set
+		stock = stock - #{stock}
+		where num=#{num}
+	</update>
+	
 </mapper>

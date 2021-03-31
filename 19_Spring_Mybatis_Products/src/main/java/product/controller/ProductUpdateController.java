@@ -46,26 +46,25 @@ public class ProductUpdateController {
 	
 	@RequestMapping(value=command,method=RequestMethod.POST)
 	public String doAction(@Valid Product product, BindingResult result) {
-		Product prd = dao.getProduct(product.getNum());
 		//System.out.println("새 이미지 : "+product.getImage());
-		//System.out.println("이전 이미지 : "+prd.getImage());
+		//System.out.println("이전 이미지 : "+upload2);
 		boolean newImg = true;
 		if(product.getImage().equals("")) {
 			newImg = false; // 새로 이미지 추가 하지 않은 경우
-			product.setImage(prd.getImage());
+			product.setImage(product.getUpload2());
 		}
 		
 		if(!result.hasErrors()) { // 유효성 검사 오류 없음
 			int cnt = dao.updateProduct(product);
 			if(cnt == 1) { // 수정 성공
-				if(!product.getImage().equals(prd.getImage())) {
+				if(!product.getImage().equals(product.getUpload2())) {
 					//새로 이미지 추가 및 이전 이미지 삭제
-					//System.out.println("이미지 변화:"+!product.getImage().equals(prd.getImage()));
+					//System.out.println("이미지 변화:"+!product.getImage().equals(product.getUpload2()));
 					if(newImg) { // 새로 이미지 추가
 						String uploadPath = servletContext.getRealPath("/resources");
 						//System.out.println("uploadPath: "+uploadPath);
 						// C:\sw\Spring_sdr\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\19_Spring_Mybatis_Products\resources
-						File delFile = new File(uploadPath+File.separator+prd.getImage());
+						File delFile = new File(uploadPath + File.separator + product.getUpload2());
 						delFile.delete(); // 이전 이미지 삭제
 		
 						MultipartFile multi = product.getUpload();

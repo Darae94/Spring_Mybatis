@@ -125,12 +125,16 @@
 
 </mapper>
   
-<!-- SqlMapConfig.xml -->
+<!-- SqlMapConfig.xml => settings: 밑줄 있는 칼럼 사용시 필요 -->
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
 <configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
 	<typeAliases>
 		<typeAlias type="member.model.Member" alias="MyMember" />
 	</typeAliases>

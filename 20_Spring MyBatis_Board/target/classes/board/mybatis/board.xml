@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="board.model.BoardBean">
+
+	<select id="GetCountBoard" resultType="int">
+		select count(*) from board
+		<if test="whatColumn == 'subject'">
+			where subject = #{keyword}
+		</if>
+		<if test="whatColumn == 'writer'">
+			where writer = #{keyword}
+		</if>
+		<if test="whatColumn == 'all'">
+			where writer = #{keyword} or subject = #{keyword}
+		</if>
+	</select>
+
+	<select id="GetAllBoard" resultType="MyBoard">
+		select * from board
+		<if test="whatColumn == 'subject'">
+			where subject = #{keyword}
+		</if>
+		<if test="whatColumn == 'writer'">
+			where writer = #{keyword}
+		</if>
+		<if test="whatColumn == 'all'">
+			where writer = #{keyword} or subject = #{keyword}
+		</if>
+		order by ref desc, re_step
+	</select>
+	
+	<insert id="InsertBoard">
+		insert into board(num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip)
+		values(board_seq.nextval,#{writer},#{email},#{subject},#{passwd},#{regDate},board_seq.currval,0,0,#{content},#{ip})
+	</insert>
+	
+	<update id="ReadCountUpdate">
+		update board set readcount = readcount + 1
+		where num = #{num}
+	</update>
+	
+	<select id="GetBoard" resultType="MyBoard">
+		select * from board
+		where num = #{num}
+	</select>
+	
+	<update id="UpdateBoard">
+		update board set writer=#{writer},email=#{email},subject=#{subject},content=#{content}
+		where num = #{num} and passwd = #{passwd}
+	</update>
+	
+	<delete id="DeleteBoard">
+		delete from board
+		where num = #{num} and passwd = #{passwd}
+	</delete>
+	
+	<update id="updateReStep">
+		update board set re_step = re_step + 1
+		where ref = #{ref} and re_step > #{reStep}
+	</update>
+	
+	<insert id="InsertReply">
+		insert into board(num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip)
+		values(board_seq.nextval,#{writer},#{email},#{subject},#{passwd},#{regDate},#{ref},#{reStep},#{reLevel},#{content},#{ip})
+	</insert>
+	
+</mapper>
+
+<!-- boad.xml -->

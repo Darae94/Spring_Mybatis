@@ -13,7 +13,7 @@ replyForm.jsp<br>
 	<form:form commandName="board" method="post" action="reply.bd">
 		<input type="hidden" name="pageNumber" value="${ pageNumber }">
 		<input type="hidden" name="ref" value="${ board.ref }">
-		<input type="hidden" name="restep" value="${ board.reStep }">
+		<input type="hidden" name="reStep" value="${ board.reStep }">
 		<input type="hidden" name="reLevel" value="${ board.reLevel }">
 		<table border=1 style="width:450px;">
 			<tr bgcolor="<%=value_c%>">

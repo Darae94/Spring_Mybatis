@@ -79,3 +79,7 @@ select num,writer,email,subject,passwd,reg_date,readcount,ref,re_step,re_level,c
 from board
 order by ref desc, re_step;
 
+select num,ref,re_step,re_level
+from board
+order by ref desc, re_step;
+

@@ -55,15 +55,12 @@ public class BoardDao {
 		return cnt;
 	}
 
-	public int insertReply(BoardBean board) {
-		sqlSessionTemplate.update(namespace+"updateReStep", board);
-		int reStep = board.getReStep() + 1;
-		int reLevel = board.getReLevel() + 1;
-		board.setReStep(reStep);
-		board.setReLevel(reLevel);
-		System.out.println("º¯È­°ª: "+reStep+"/"+reLevel);
+	public void insertReply(BoardBean board) {
+		//System.out.println(board.getRef()+"/"+board.getReStep());
+		int re = sqlSessionTemplate.update(namespace+"updateReStep", board);
+		//System.out.println("Update reply: "+re);
 		int cnt = sqlSessionTemplate.update(namespace+"InsertReply", board);
-		return cnt;
+		//System.out.println("Update reply: "+cnt);
 	}
 	
 }

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,15 +29,17 @@ public class BoardReplyController {
 	BoardDao bDao;
 	
 	@RequestMapping(value = command, method = RequestMethod.GET)
-	public ModelAndView doAction(
+	public String doAction(
 				@RequestParam("pageNumber") String pageNumber,
-				BoardBean board
+				BoardBean board,
+				Model model
 			) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("board",board);
-		mav.addObject("pageNumber",pageNumber);
-		mav.setViewName(getPage);
-		return mav;
+		//System.out.println(board.getRef());
+		//System.out.println("form>>"+board.getReStep());
+		//System.out.println(board.getReLevel());
+		model.addAttribute("board",board);
+		model.addAttribute("pageNumber",pageNumber);
+		return getPage;
 	}
 	
 	@RequestMapping(value = command, method = RequestMethod.POST)
@@ -46,22 +49,21 @@ public class BoardReplyController {
 				BindingResult result,
 				HttpServletRequest request
 			) {
-		Timestamp regDate = new Timestamp(System.currentTimeMillis());
-		String ip = request.getRemoteAddr();
-		board.setRegDate(regDate);
-		board.setIp(ip);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pageNumber",pageNumber);
 		mav.addObject("board",board);
+		//System.out.println(board.getRef());
+		//System.out.println("post>>"+board.getReStep());
+		//System.out.println(board.getReLevel());
 		if(result.hasErrors()) {
 			mav.setViewName(getPage);
 		} else {
-			int cnt = bDao.insertReply(board);
-			if(cnt == 1) {
-				mav.setViewName(gotoPage);
-			} else {
-				mav.setViewName(getPage);
-			}
+			Timestamp regDate = new Timestamp(System.currentTimeMillis());
+			String ip = request.getRemoteAddr();
+			board.setRegDate(regDate);
+			board.setIp(ip);
+			bDao.insertReply(board);
+			mav.setViewName(gotoPage);
 		}
 		return mav;
 	}

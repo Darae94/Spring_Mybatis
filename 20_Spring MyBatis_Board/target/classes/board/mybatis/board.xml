@@ -58,13 +58,13 @@
 	</delete>
 	
 	<update id="updateReStep">
-		update board set re_step = re_step + 1
+		update board set re_step = re_step + 1 
 		where ref = #{ref} and re_step > #{reStep}
 	</update>
 	
 	<insert id="InsertReply">
-		insert into board(num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip)
-		values(board_seq.nextval,#{writer},#{email},#{subject},#{passwd},#{regDate},#{ref},#{reStep},#{reLevel},#{content},#{ip})
+		insert into board(num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip) 
+		values(board_seq.nextval,#{writer},#{email},#{subject},#{passwd},#{regDate},#{ref},#{reStep}+1,#{reLevel}+1,#{content},#{ip})
 	</insert>
 	
 </mapper>
